@@ -2,7 +2,7 @@ import { Delete, Edit } from '@mui/icons-material';
 import { IconButton } from '@mui/material';
 import React from 'react';
 
-export const Table = () => {
+export const Table = ({ rows, handleDelete, handleEdit }) => {
     return (
         <div className="table-wrapper">
             <table className='table'>
@@ -15,58 +15,29 @@ export const Table = () => {
                     </tr>
                 </thead>
                 <tbody>
+                    {rows.map((items) => {
+                        const statusText = items.status.charAt(0).toUpperCase() + items.status.slice(1);
 
-                    <tr>
-                        <td>Home</td>
-                        <td>This is the main page</td>
-                        <td><span className='label label-live'>Live</span></td>
-                        <td>
-                            <span className='actions'>
-                                <IconButton>
-                                    <Delete />
-                                </IconButton>
-                                <IconButton>
-                                    <Edit />
-                                </IconButton>
-                            </span>
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td>Home</td>
-                        <td>This is the main page Lorem ipsum dolor sit amet</td>
-                        <td><span className='label label-draft'>Draft</span></td>
-                        <td>
-                            <span className='actions'>
-                                <IconButton>
-                                    <Delete />
-                                </IconButton>
-                                <IconButton>
-                                    <Edit />
-                                </IconButton>
-                            </span>
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td>Home</td>
-                        <td>This is the main page</td>
-                        <td><span className='label label-error'>Draft</span></td>
-                        <td>
-                            <span className='actions'>
-                                <IconButton>
-                                    <Delete />
-                                </IconButton>
-                                <IconButton>
-                                    <Edit />
-                                </IconButton>
-                            </span>
-                        </td>
-                    </tr>
+                        return (
+                            <tr key={items.id}>
+                                <td>{items.page}</td>
+                                <td>{items.description}</td>
+                                <td><span className={`label label-${ items.status }`}>{statusText}</span></td>
+                                <td>
+                                    <span className='actions'>
+                                        <IconButton onClick={() => handleDelete(items.id)}>
+                                            <Delete />
+                                        </IconButton>
+                                        <IconButton onClick={() => handleEdit(items.id)}>
+                                            <Edit />
+                                        </IconButton>
+                                    </span>
+                                </td>
+                            </tr>
+                        );
+                    })}
                 </tbody>
             </table>
-
-
         </div>
     );
 };

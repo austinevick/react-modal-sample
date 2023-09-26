@@ -71,6 +71,18 @@
   align-items: center;
   justify-content: center;
   background-color: rgba(0, 0, 0, 0.5);
+
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
 
 .modal {
@@ -78,4 +90,29 @@
   padding: 2rem;
   background-color: white;
   width: 25em;
+}
+
+.btn {
+  display: flex;
+  align-items: center;
+  border: 0.5px solid #eee
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+  border: 1px solid black;
+  border-radius: 0.3rem;
+  padding: 0.3rem;
+  font-size: 1rem;
+}
+
+.form-group textarea {
+  resize: none;
 }
